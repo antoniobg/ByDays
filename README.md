@@ -1,8 +1,17 @@
 == By Days
 
+Live demo: [http://booking-system-abg.herokuapp.com/](http://booking-system-abg.herokuapp.com/)
+
 Room Booking Application.
 
-Living demo: [http://booking-system-abg.herokuapp.com/](http://booking-system-abg.herokuapp.com/)
+Framework: Ruby on Rails
+
+Database: PostgreSQL
+
+ORM: ActiveRecord
+
+Other libraries: Twitter Bootstrap, jQuery
+
 
 Models:
 

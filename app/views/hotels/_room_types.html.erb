@@ -1,0 +1,42 @@
+<section class="row room-types">
+  <section class="col-xs-12">
+    <h2>
+      Type of Rooms
+      <% if params[:admin] %>
+        <small><%=link_to "Add new type of room", new_hotel_room_type_path(@hotel) %></small>
+      <% end %>
+    </h2>
+    <ul class="media-list">
+      <% @hotel.room_types.each do |room_type| %>
+      <li class="media room-type-info">
+        <a class="pull-left" href="<%= room_type.picture %>">
+          <img class="media-object img-rounded room-type-picture" src="<%= room_type.picture %>">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= room_type %>
+            <% if params[:admin] %>
+              <small><%= link_to "Edit", edit_hotel_room_type_path(@hotel, room_type) %></small>
+              <small><%= link_to 'Delete', hotel_room_type_path(@hotel, room_type), method: :delete, data: { confirm: 'Are you sure?' }  %> </small>
+            <% end %>
+          </h4>
+          <p>Price per night: <%= room_type.price %>€</p>
+          <div class="check-availability">
+            <%= form_tag(hotel_room_type_check_availability_path(@hotel, room_type), html: { role: "form"}) do %>
+              <div class="col-xs-8">
+                <%= label_tag :start_date, "From" %>
+                <%= text_field :booking, :start_date, class: 'form-control input-xs', data: { provide: "datepicker" } %>
+                <%= label_tag :end_date, "To" %>
+                <%= text_field :booking, :end_date, class: 'form-control input-xs', data: { provide: "datepicker" } %>
+              </div>
+              <div class="col-xs-4 availability-check-button">
+              <%= submit_tag "Check availability", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+</section>

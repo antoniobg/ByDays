@@ -1,0 +1,19 @@
+<h1>
+  Hotel List
+  <% if params[:admin] %>
+    <small><a href="<%= new_hotel_path %>">Add Hotel</a></small>
+  <% end %>
+</h1>
+<table class="table table-striped">
+  <% @hotels.each do |hotel| %>
+  <tr>
+    <td><%= link_to hotel, hotel_path(hotel) %></a></td>
+    <td><%= hotel.address %></td>
+    <td></td>
+    <% if params[:admin] %>
+    <td><span class="glyphicon glyphicon-pencil"></span> <%= link_to 'Edit', edit_hotel_path(hotel)%></td>
+    <td><span class="glyphicon glyphicon-remove"></span> <%= link_to 'Delete', hotel_path(hotel), method: :delete, data: { confirm: 'Are you sure?' }  %> </td>
+    <% end %>
+  </tr>
+  <% end %>
+</table>

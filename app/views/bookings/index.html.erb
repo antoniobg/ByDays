@@ -1,0 +1,36 @@
+<section class="search-form text-center">
+  <h1>Your bookings</h1>
+  <%= form_tag(bookings_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+    <div class="form-group">
+      <%= text_field_tag :customer_email, params[:customer_email], class: "form-control", placeholder: "Enter your e-mail" %>
+      <!-- In order to have the "search" icon int the button, we need to use plain HTML instead 
+           of using a Rails form helper -->
+      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> Search</button>
+    </div>
+  <% end %>
+</section>
+<% if @bookings.any? %>
+<section class="bookings-list">
+  <table class="table table-hover">
+    <thead>
+      <td>Hotel</td>
+      <td>Room Type</td>
+      <td>Price</td>
+      <td>From</td>
+      <td>To</td>
+      <td></td>
+    </thead>
+    <% @bookings.each do |booking| %>
+    <tr>
+      <td><%= booking.hotel %></td>
+      <td><%= booking.room_type %></td>
+      <td><%= booking.total_price %> €</td>
+      <td><%= booking.start_date %></td>
+      <td><%= booking.end_date %></td>
+      <td><%= link_to(
+        content_tag(:span, "Cancel", class: "glyphicon glyphicon-remove"), booking, method: :delete, data: { confirm: 'Are you sure?' }) %></td>
+    </tr>
+    <% end %>
+  </table>
+</section>
+<% end %>

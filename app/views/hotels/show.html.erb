@@ -1,0 +1,18 @@
+<h1>
+  <%= @hotel %>
+  <% if params[:admin] %>
+    <small><%=link_to "Edit", edit_hotel_path(@hotel) %></small>
+  <% end %>
+</h1>
+<section class="hotel-content">
+  <section class="row">
+    <section class="hotel-picture col-xs-4">
+      <img src="<%= @hotel.picture %>" class="img-rounded img-responsive" alt="Foto del hotel <%= @hotel %>">
+    </section>
+    <section class="hotel-info col-xs-8">
+      <p><%= @hotel.description %></p>
+      <p><%= @hotel.address %></p>
+    </section>
+  </section>
+  <%= render('room_types', hotel: @hotel) %>
+</section>

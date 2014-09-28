@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>By Days - Room Booking System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= twitter_bootstrap_stylesheet_link_tag :netdna, force: true, version: "3.1.1" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= twitter_bootstrap_javascript_include_tag :netdna, force: true, version: "3.1.1"  %>
+
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+  <header>
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bydays-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="<%= root_path %>">
+                By Days
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bydays-navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="<%= hotels_path %>">Hotels</a></li>
+                <li><a href="<%= bookings_path %>">Reservations</a></li>
+                <li><%= link_to "Admin", url_for(admin: true) %></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+  </header>
+  <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %> fade in">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+     <%= value %>
+  </div>
+  <% end %>  
+  <section class="container">
+    <%= yield %>
+  </section>
+</body>
+</html>
